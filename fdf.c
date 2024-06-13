@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:39:41 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/13 18:43:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:52:02 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	main(int argc, char *argv[])
 	while(numbers[n])
 	{
 		// printf("x:%d y:%d z:%d\n", numbers[n][0], numbers[n][1], numbers[n][2]);
-		xx = (1920/2 + /*5 *  */((numbers[n][0]) * cos(120) + (numbers[n][1]) * cos(120 + 2) + (numbers[n][2]) * cos(120 - 2)));
-		yy = (1080/2 + /*5 *  */((numbers[n][0]) * sin(120) + (numbers[n][1]) * sin(120 + 2) + (numbers[n][2]) * sin(120 - 2)));
+		xx = (1920/2 + 5 * ((numbers[n][0]) * cos(120) + (numbers[n][1]) * cos(120 + 2) + (numbers[n][2]) * cos(120 - 2)));
+		yy = (1080/2 + 5 * ((numbers[n][0]) * sin(120) + (numbers[n][1]) * sin(120 + 2) + (numbers[n][2]) * sin(120 - 2)));
 		if (xx > 0 && xx < 1920 && yy < 1080 && 0 < yy)
 			my_mlx_pixel_put(&img, xx, yy, 0x00FF0000);
 		n++;
