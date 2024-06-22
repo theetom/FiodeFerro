@@ -6,11 +6,13 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:59:55 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/20 16:06:32 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:56:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void two_to_three(int **numbers)
+#include "fdf.h"
+
+void two_to_three(int **numbers, count_data *count_values, t_data img, t_data t)
 {
 	int n;
 	int xx;
@@ -18,8 +20,11 @@ void two_to_three(int **numbers)
 	int yy;
 	int yy1;
 	int x;
-	int y;
 	int scale;
+	int a;
+	int b;
+	int c;
+	
 	n = 0;
 	while(numbers[n])
 	{
@@ -48,10 +53,10 @@ void two_to_three(int **numbers)
 				x++;
 			}
 		}
-		if (numbers[n - count_in_line] && n >= count_in_line)
+		if (numbers[n - count_values->count_in_line] && n >= count_values->count_in_line)
 		{
-			xx1 = (1920/2 + scale * ((numbers[n - count_in_line][0]) * cos(120) + (numbers[n - count_in_line][1]) * cos(120 + 2) + (numbers[n - count_in_line][2]) * cos(120 - 2)));
-			yy1 = (1080/2 + scale * ((numbers[n - count_in_line][0]) * sin(120) + (numbers[n - count_in_line][1]) * sin(120 + 2) + (numbers[n - count_in_line][2]) * sin(120 - 2)));
+			xx1 = (1920/2 + scale * ((numbers[n - count_values->count_in_line][0]) * cos(120) + (numbers[n - count_values->count_in_line][1]) * cos(120 + 2) + (numbers[n - count_values->count_in_line][2]) * cos(120 - 2)));
+			yy1 = (1080/2 + scale * ((numbers[n - count_values->count_in_line][0]) * sin(120) + (numbers[n - count_values->count_in_line][1]) * sin(120 + 2) + (numbers[n - count_values->count_in_line][2]) * sin(120 - 2)));
 			// printf("xx1:%f	yy1:%f\n", xx1, yy1);
 			x = xx;
 			while (x < xx1)

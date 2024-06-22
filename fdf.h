@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:31:50 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/20 15:02:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/21 11:54:05 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-typedef struct	s_data {
+typedef struct	t_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -40,7 +40,7 @@ typedef struct	s_data {
 	int		img_h;
 }	t_data;
 
-typedef struct c_data {
+typedef struct count_data {
 	int	count_in_line;
 	int	count_lines;
 }	count_data;
@@ -53,5 +53,6 @@ int		ft_atoi(const char *nptr);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(int keysim, t_data *t);
 void	points_creator(char *map, int **numbers);
+void	two_to_three(int **numbers, count_data *count_data, t_data img, t_data t);
 
 #endif
