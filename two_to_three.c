@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:59:55 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/21 11:56:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:29:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,20 @@
 void two_to_three(int **numbers, count_data *count_values, t_data img, t_data t)
 {
 	int n;
-	int xx;
-	int xx1;
-	int yy;
-	int yy1;
-	int x;
-	int scale;
-	int a;
-	int b;
-	int c;
+	float xx;
+	float xx1;
+	float yy;
+	float yy1;
+	float x;
+	int		scale;
+	float	a;
+	float	b;
+	float	c;
 	
 	n = 0;
 	while(numbers[n])
 	{
-		scale = 160;
-		// printf("%i \n", n);
-		
+		scale = 20;
 		xx = (t.img_w/2 + scale * ((numbers[n][0]) * cos(120) + (numbers[n][1]) * cos(120 + 2) + (numbers[n][2]) * cos(120 - 2)));
 		yy = (t.img_h/2 + scale * ((numbers[n][0]) * sin(120) + (numbers[n][1]) * sin(120 + 2) + (numbers[n][2]) * sin(120 - 2)));
 		// printf("x:%d	y:%d	z:%d	xx:%f	yy:%f\n", numbers[n][0], numbers[n][1], numbers[n][2], xx, yy);

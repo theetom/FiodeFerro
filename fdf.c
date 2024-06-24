@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:39:41 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/21 11:57:11 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:54:16 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char *argv[])
 	numbers = NULL;
 	if(argc != 2)
 		return (0);
-	points_creator(argv[1], numbers);
+	points_creator(argv[1], &numbers);
 	t.mlx = mlx_init();
 	t.img_h = 1080;
 	t.img_w = 1920;
