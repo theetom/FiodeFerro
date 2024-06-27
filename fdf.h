@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:31:50 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/24 13:52:06 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:58:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,14 @@ typedef struct	t_data {
 }	t_data;
 
 typedef struct count_data {
-	int	count_in_line;
-	int	count_lines;
+	t_data	t;
+	t_data	img;
+	int		count_in_line;
+	int		count_lines;
+	double		position_w;
+	double		position_h;
+	double	scale;
+	
 }	count_data;
 
 
@@ -52,7 +58,7 @@ char	*get_next_line(int fd);
 int		ft_atoi(const char *nptr);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(int keysim, t_data *t);
-void	points_creator(char *map, int ***numbers);
-void	two_to_three(int **numbers, count_data *count_data, t_data img, t_data t);
+void	points_creator(char *map, int ***numbers, count_data *count_values);
+void	two_to_three(int **numbers, count_data *count_data);
 
 #endif

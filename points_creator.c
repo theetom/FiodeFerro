@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:29:48 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/24 16:38:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:53:52 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,16 @@ static void point_assigner(int **numbers, int fd)
 	free(array);
 }
 
-void points_creator(char *map, int ***numbers)
+void points_creator(char *map, int ***numbers, count_data *count_values)
 {
 	int			fd;
-	count_data	count_values;
 	int			count;
 	int			n;
 	
-	counter(map, &count_values);
-	count = (count_values.count_lines * count_values.count_in_line) + count_values.count_in_line + 1;
+	counter(map, count_values);
+	count = (count_values->count_lines * count_values->count_in_line) + count_values->count_in_line + 1;
 	(*numbers) = malloc(sizeof * (*numbers) * count);
 	fd = open(map, O_RDONLY);
 	point_assigner((*numbers), fd);	n = 0;
-	while ((*numbers)[n])
-	{
-		printf("x:%d	y:%d	z:%d\n", (*numbers)[n][0], (*numbers)[n][1], (*numbers)[n][2]);
-		n++;
-	}
 	close(fd);
 }
