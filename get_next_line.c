@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:30:21 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/12 18:30:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:45:12 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static int	chrnline(char *s)
 	else
 		return (0);
 }
+
 char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];

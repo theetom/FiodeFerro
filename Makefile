@@ -6,19 +6,24 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/06/12 12:36:26 by toferrei         ###   ########.fr        #
+#    Updated: 2024/06/28 14:17:32 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf.a
-SOURCES = \
+NAME	= fdf.a
+
+LIBFT	= libft/
+MLX		= minilibx-linux/
+LIBFT_A	= $(addprefix $(LIBFT), libft.a)
+MLX_A	= $(addprefix $(MLX), libmlx_Linux.a)
+SOURCES	= \
 
 	
 	
 OBJECTS = $(SOURCES:.c=.o)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Lminilbx-linux minilibx-linux/libmlx_Linux.a -lX11 -lXext
+CC		= cc
+CFLAGS 	= -Wall -Wextra -Werror -Lminilbx-linux minilibx-linux/libmlx_Linux.a Libft/libft.a -lX11 -lXext -lm
 
 all: $(NAME)
 
