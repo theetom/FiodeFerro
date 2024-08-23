@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:29:48 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/28 17:20:07 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:07:37 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void points_creator(char *map, int ***numbers, t_count_data *count_values)
 	
 	counter(map, count_values);
 	count = (count_values->count_lines * count_values->count_in_line) + count_values->count_in_line + 1;
-	(*numbers) = malloc(sizeof * (*numbers) * count);
+	*numbers = malloc(sizeof *numbers * count);
 	fd = open(map, O_RDONLY);
 	point_assigner((*numbers), fd, count_values);
 	close(fd);

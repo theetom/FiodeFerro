@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:59:55 by toferrei          #+#    #+#             */
-/*   Updated: 2024/06/28 17:05:27 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/08/20 17:29:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void x_line(int n, int **numbers, double xx, double yy, t_count_data *count_valu
 		b = yy - (a * xx);
 		c = (a * x + b);
 		if (x > 0 && x < count_values->t.img_w && c < count_values->t.img_h && 0 < c)
-			my_mlx_pixel_put(&count_values->img, x, c, 0x00FFFFFF);
+			my_mlx_pixel_put(&count_values->img, x, c, 0xFFFFFF);
 		x += 0.01;
 	}
 }
