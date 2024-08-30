@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:29:48 by toferrei          #+#    #+#             */
-/*   Updated: 2024/08/21 15:07:37 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/08/30 14:44:32 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void counter(char *map, t_count_data *count_values)
 		x = -1;
 		while(count_values->array[++n])
 			free(count_values->array[n]);
-		free(count_values->new_line);
 		}
+		free(count_values->new_line);
 	}
 	free(count_values->array);
 	close(fd);
@@ -65,9 +65,12 @@ static void point_assigner(int **numbers, int fd, t_count_data *count_values)
 		}
 		y++;
 		x = -1;
-		m = 0;
-		while(count_values->array[++m])
+		m = -1;
+		while(count_values->array[++m] )
+		{	
 			free(count_values->array[m]);
+			printf("entrei");
+		}
 		free(count_values->new_line);
 	}
 	free(count_values->array);
@@ -80,8 +83,8 @@ void points_creator(char *map, int ***numbers, t_count_data *count_values)
 	
 	counter(map, count_values);
 	count = (count_values->count_lines * count_values->count_in_line) + count_values->count_in_line + 1;
-	*numbers = malloc(sizeof *numbers * count);
+	numbers = malloc(sizeof *numbers * count);
 	fd = open(map, O_RDONLY);
-	point_assigner((*numbers), fd, count_values);
+	point_assigner(numbers, fd, count_values);
 	close(fd);
 }
