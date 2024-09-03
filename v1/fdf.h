@@ -6,10 +6,9 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/08/30 16:16:23 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:31:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FDF_H
 # define FDF_H
@@ -29,7 +28,8 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	void	*mlx;
 	void	*mlx_win;
@@ -51,7 +51,7 @@ typedef struct	s_data {
 	double	y_min;
 	double	x_max;
 	double	y_max;
-}				t_data;
+}	t_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(int keysim, t_data *data);
