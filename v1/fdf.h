@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/03 14:31:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:10:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,21 @@ typedef struct s_data
 	double	y_min;
 	double	x_max;
 	double	y_max;
+	int		count;
 }	t_data;
+
+typedef struct s_conv
+{
+	double		xx;
+	double		yy;
+	double		xx1;
+	double		yy1;
+	double		a;
+	double		b;
+	double		c;
+	double		x;
+	int			temp;
+}	t_conv;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		close_window(int keysim, t_data *data);

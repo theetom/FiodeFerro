@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:50:54 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/03 17:03:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:20:05 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static double	two_d_cos(t_data *data, int n)
 {
-	return ((data->tdp[n][0]) * cos(120) + (data->tdp[n][1]) * cos(120 + 2) + (data->tdp[n][2]) * cos(120 - 2));
+	return ((data->tdp[n][0]) * cos(120) + (data->tdp[n][1])
+			* cos(120 + 2) + (data->tdp[n][2]) * cos(120 - 2));
 }
 
 static double	two_d_sin(t_data *data, int n)
@@ -32,7 +33,7 @@ void	struct_init(t_data *data)
 	data->y_min = two_d_sin(data, n);
 	data->x_max = two_d_cos(data, n);
 	data->y_max = two_d_sin(data, n);
-	while (data->tdp[n + 1])
+	while (n < data->count - 1)
 	{
 		n++;
 		if (data->x_max < two_d_cos(data, n))

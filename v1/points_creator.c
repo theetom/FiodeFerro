@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/03 14:16:08 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/04 17:10:27 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void point_assigner(int fd, t_data *data)
 		y++;
 		x = -1;
 		m = -1;
-		while(data->array[++m] )
+		while(data->array[++m])
 			free(data->array[m]);
 		free(data->new_line);
 		free(data->array);
@@ -77,15 +77,14 @@ static void point_assigner(int fd, t_data *data)
 void points_creator(char *map, t_data *data)
 {
 	int	fd;
-	int count;
 
 	data->line_l = 0;
 	data->lines = 0;
 	fd = open(map, O_RDONLY);
 	counter(fd, data);
 	close(fd);
-	count = data->lines * data->line_l + data->line_l + 1;
-	data->tdp = malloc(sizeof *(data->tdp) * count);
+	data->count = data->lines * data->line_l;
+	data->tdp = malloc(sizeof *(data->tdp) * data->count);
 	fd = open(map, O_RDONLY);
 	point_assigner(fd, data);
 	close(fd);
