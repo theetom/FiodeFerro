@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:11 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/04 17:40:56 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:19:44 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ int	main(int argc, char *argv[])
 	struct_init(&data);
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, data.img_w, data.img_h, "My Fdf!");
+	mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, close_window, &data);
+	mlx_hook(data.mlx_win, 17, 1L << 17, delete_everything, &data);
 	data.img = mlx_new_image(data.mlx, data.img_w, data.img_h);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
 	two_to_three(&data);
+	my_mlx_pixel_put(&data, 1920 / 2, 1080 / 2, 0x00FF0000);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
-	mlx_hook(data.mlx_win, 2, KeyPressMask, close_window, &data);
 	mlx_loop(data.mlx);
 }

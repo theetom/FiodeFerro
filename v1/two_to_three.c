@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:12:56 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/04 17:49:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:22:35 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ static void swap_point(t_conv *pt)
 
 static void x_line(int n, t_conv *pt, t_data *data)
 {
-	pt->xx1 = (data->position_w + data->scale * ((data->tdp[n + 1][0])
-			* cos(120) + (data->tdp[n + 1][1]) * cos(120 + 2)
-			+ (data->tdp[n + 1][2]) * cos(120 - 2)));
-	pt->yy1 = (data->position_h + data->scale * ((data->tdp[n + 1][0])
-			* sin(120) + (data->tdp[n + 1][1]) * sin(120 + 2)
-			+ (data->tdp[n + 1][2]) * sin(120 - 2)));
+	pt->xx1 = two_d_cos(data->position_w, data->scale, data, n);
+	pt->yy1 = two_d_sin(data->position_h, data->scale, data, n);
 	if (pt->xx1 < pt->xx)
 		swap_point(pt);
 	pt->x = pt->xx;
@@ -49,12 +45,8 @@ static void x_line(int n, t_conv *pt, t_data *data)
 
 static void y_line(int n, t_conv *pt, t_data *data)
 {
-	pt->xx1 = (data->position_w + data->scale * ((data->tdp[n - data->line_l][0])
-			* cos(120) + (data->tdp[n - data->line_l][1]) * cos(120 + 2)
-			+ (data->tdp[n - data->line_l][2]) * cos(120 - 2)));
-	pt->yy1 = (data->position_h + data->scale * ((data->tdp[n - data->line_l][0])
-			* sin(120) + (data->tdp[n - data->line_l][1]) * sin(120 + 2)
-			+ (data->tdp[n - data->line_l][2]) * sin(120 - 2)));
+	pt->xx1 = two_d_cos(data->position_w, data->scale, data, n);;
+	pt->yy1 = two_d_sin(data->position_h, data->scale, data, n);
 	if (pt->xx1 < pt->xx)
 		swap_point(pt);
 	pt->x = pt->xx;
@@ -71,18 +63,16 @@ void two_to_three(t_data *data)
 	n = 0;
 	while(n < data->count)
 	{
-		pt.xx = (data->position_w + data->scale * ((data->tdp[n][0]) * cos(120) +
-				(data->tdp[n][1]) * cos(120 + 2) + (data->tdp[n][2]) * cos(120 - 2)));
-		pt.yy = (data->position_h + data->scale * ((data->tdp[n][0]) * sin(120) +
-				(data->tdp[n][1]) * sin(120 + 2) + (data->tdp[n][2]) * sin(120 - 2)));
+		pt.xx = two_d_cos(data->position_w, data->scale, data, n);
+		pt.yy = two_d_sin(data->position_h, data->scale, data, n);
 		if (pt.xx > 0 && pt.xx < data->img_w && pt.yy < data->img_h && 0 < pt.yy)
 			my_mlx_pixel_put(data, pt.xx, pt.yy, 0x00FFFFFF);
 		if (n < data->count - 1)
 			if (data->tdp[n + 1] && (n + 1) % data->line_l != 0)
-				x_line(n, &pt, data);
+				x_line(n + 1, &pt, data);
 		if (n >= data->line_l)
 			if (data->tdp[n - data->line_l])
-				y_line(n, &pt, data);
+				y_line(n - data->line_l, &pt, data);
 		n++;
 	}
 }
