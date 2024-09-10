@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/06 14:39:37 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:43:22 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,17 @@
 # define A 97
 # define S 115
 # define D 100
-# define ESC 65307
+# define R 0x72
+# define F 0x66
+# define Z 0x7a
+# define X 0x78
+# define C 0x63
+# define V 0x76
+# define B 98
+# define N 110
+# define PLUS 0xffab
+# define MINUS 0xffad
+# define ESC 0xff1b
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -44,6 +54,7 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 	int		**tdp;
+	int		*z;
 	int		line_l;
 	int		lines;
 	char	*new_line;
@@ -59,6 +70,9 @@ typedef struct s_data
 	double	y_max;
 	int		count;
 	int		zx;
+	float	angle;
+	float	angles;
+	float	anglec;
 }	t_data;
 
 typedef struct s_conv
@@ -75,7 +89,7 @@ typedef struct s_conv
 }	t_conv;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		close_window(int keycode, t_data *data);
+int		keys(int keycode, t_data *data);
 void	points_creator(char *map, t_data *data);
 char	*get_next_line(int fd);
 void	struct_init(t_data *data);
@@ -83,5 +97,7 @@ void	two_to_three(t_data *data);
 int		delete_everything(t_data *data);
 double	two_d_cos(int position, int scale, t_data *data, int n);
 double	two_d_sin(int position, int scale, t_data *data, int n);
+int		keys(int keysim, t_data *data);
+void	point_assigner(int fd, t_data *data);
 
 #endif

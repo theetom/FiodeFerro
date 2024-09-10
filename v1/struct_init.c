@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 15:50:54 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/06 15:18:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:39:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	struct_init(t_data *data)
 	data->scale = scale(data);
 	if (data->scale < 1)
 		data->scale = 1;
-	data->position_w = (data->img_w - (data->x_max - data->x_min) * data->scale) / 2 - data->x_min * data->scale;
-	data->position_h = (data->img_h - (data->y_max - data->y_min) * data->scale) / 2 - data->y_min * data->scale;
+	data->position_w = (data->img_w - ((data->x_max - data->x_min) * data->scale)) / 2 - (data->x_min * data->scale);
+	data->position_h = (data->img_h - ((data->y_max - data->y_min) * data->scale)) / 2 - (data->y_min * data->scale);
 }
