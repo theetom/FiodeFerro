@@ -58,6 +58,7 @@ typedef struct s_data
 	double	x_max;
 	double	y_max;
 	int		count;
+	int		zx;
 }	t_data;
 
 typedef struct s_conv

@@ -41,7 +41,7 @@ static void coord_creator(t_data *data, int n, int x, int y)
 	data->tdp[n] = malloc(sizeof * data->tdp * 3);
 	if(!data->tdp[n])
 		return ;
-	data->tdp[n][2] = ft_atoi(data->array[x]);
+	data->tdp[n][2] = ft_atoi(data->array[x])  / data->zx;
 	data->tdp[n][1] = y;
 	data->tdp[n][0] = x;
 }

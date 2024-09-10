@@ -49,13 +49,8 @@ void	struct_init(t_data *data)
 			data->y_min = two_d_sin(0, 1, data, n);
 	}
 	data->scale = scale(data);
-	printf("x_max:%f	x_min:%f	y_max:%f	y_min:%f\n", data->x_max, data->x_min, data->y_max, data->y_min);
-	printf("x_max:%f	x_min:%f	y_max:%f	y_min:%f\n", data->x_max*data->scale, data->x_min*data->scale, data->y_max*data->scale, data->y_min*data->scale);
-	printf("scale:%f\n", data->scale);
-	data->position_w = (data->img_w / 2) - (((data->x_max - data->x_min) / 2) * data->scale);
-	data->position_h = (data->img_h / 2) - (((data->y_max - data->y_min) / 2) * data->scale); //(data->img_h / 2) - (((data->y_max - data->y_min) * data->scale) / 2);
-	printf("posh:%f\n", data->position_h);
-	printf("posw:%f\n", data->position_w);
-	printf("x_max:%f	x_min:%f\n", data->x_max * data->scale + data->position_w, data->x_min * data->scale + data->position_w);
-	printf("y_max:%f	y_min:%f\n", data->y_max * data->scale + data->position_h, data->y_min * data->scale + data->position_h);
+	if (data->scale < 1)
+		data->scale = 1;
+	data->position_w = (data->img_w - (data->x_max - data->x_min) * data->scale) / 2 - data->x_min * data->scale;
+	data->position_h = (data->img_h - (data->y_max - data->y_min) * data->scale) / 2 - data->y_min * data->scale;
 }

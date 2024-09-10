@@ -35,18 +35,18 @@ int	main(int argc, char *argv[])
 	data.tdp = NULL;
 	if (argc != 2)
 		return (0);
+	data.zx = 1;
 	points_creator(argv[1], &data);
 	// points_shower(&data);
-	struct_init(&data);
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, data.img_w, data.img_h, "My Fdf!");
 	mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, close_window, &data);
 	mlx_hook(data.mlx_win, 17, 1L << 17, delete_everything, &data);
+	struct_init(&data);
 	data.img = mlx_new_image(data.mlx, data.img_w, data.img_h);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
 	two_to_three(&data);
-	my_mlx_pixel_put(&data, 1920 / 2, 1080 / 2, 0x00FF0000);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 }
