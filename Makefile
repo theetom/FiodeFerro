@@ -6,39 +6,52 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/06/28 14:17:32 by toferrei         ###   ########.fr        #
+#    Updated: 2024/09/11 18:40:02 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fdf.a
 
-LIBFT	= libft/
+LIBFT	= Libft/
 MLX		= minilibx-linux/
 LIBFT_A	= $(addprefix $(LIBFT), libft.a)
 MLX_A	= $(addprefix $(MLX), libmlx_Linux.a)
-SOURCES	= \
+SOURCES	= sources/fdf.c \
+		sources/get_next_line.c \
+		sources/mlx_hooks.c \
+		sources/mlx_utils.c \
+		sources/points_creator.c \
+		sources/struct_init.c \
+		sources/two_to_three.c
 
 	
 	
 OBJECTS = $(SOURCES:.c=.o)
 
 CC		= cc
-CFLAGS 	= -Wall -Wextra -Werror -Lminilbx-linux minilibx-linux/libmlx_Linux.a Libft/libft.a -lX11 -lXext -lm
+CFLAGS 	= -Wall -Wextra -Werror -Lminilibx-linux -lmlx_Linux -LLibft -lft -lX11 -lXext -lm
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
+	@make -C Libft
+	@make -C minilibx-linux
 	$(AR) -r $@ $?
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) -o $(CFLAGS) $?
 
 clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+	rm -f $(OBJECTS)
 
 fclean: clean
+	@make -C Libft fclean
+	@make -C minilibx-linux clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norminette:
+		norminette sources/
+
+.PHONY: all clean fclean re norminette

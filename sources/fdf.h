@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/11 16:48:55 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:42:27 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include <stdbool.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "minilibx-linux/mlx.h"
-# include "Libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../Libft/libft.h"
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -62,7 +62,7 @@ typedef struct s_data
 	int		img_h;
 	int		img_w;
 	double	position_w;
-	double	position_h;
+	double	positiundefined reference to `keyson_h;
 	double	scale;
 	double	x_min;
 	double	y_min;
