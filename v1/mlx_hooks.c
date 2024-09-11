@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:59:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/10 18:44:39 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:02:38 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int delete_everything(t_data *data)
 	exit(0);
 }	
 
-void render(t_data *data)
+static void render(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
@@ -35,14 +35,14 @@ void render(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }
 
-void z_decrement(int keysim, t_data *data)
+static void z_decrement(int k, t_data *data)
 {
 	int n;
 
 	n = 0;
-	if (keysim == R && data->zx > 1)
+	if (k == R && data->zx > 1)
 		data->zx -= 1;
-	if (keysim == F)
+	if (k == F)
 		data->zx += 1;
 	while (n < data->count)
 	{
@@ -50,41 +50,45 @@ void z_decrement(int keysim, t_data *data)
 		n++;
 	}
 }
+static void position(int k, t_data *data)
+{
+	if (k == W)
+		data->position_h -= 50;
+	if (k == A)
+		data->position_w -= 50;
+	if (k == S)
+		data->position_h += 50;
+	if (k == D)
+		data->position_w += 50;
+}
 
-int	keys(int keysim, t_data *data)
+int	keys(int k, t_data *data)
 {
 	
-	if (keysim == ESC)
+	if (k == ESC)
 		delete_everything(data);
-	if (keysim == W)
-		data->position_h -= 50;
-	if (keysim == A)
-		data->position_w -= 50;
-	if (keysim == S)
-		data->position_h += 50;
-	if (keysim == D)
-		data->position_w += 50;
-	if (keysim == PLUS)
+	if (k == W || k == A || k == S ||k == D)
+		position(k, data);
+	if (k == PLUS)
 		data->scale *= 1.5;
-	if (keysim == MINUS)
+	if (k == MINUS)
 		data->scale /= 1.5;
-	if (keysim == R || keysim == F)
-		z_decrement(keysim, data);
-	if (keysim == Z)
+	if (k == R || k == F)
+		z_decrement(k, data);
+	if (k == Z)
 		data->anglec += 0.1;
-	if (keysim == X)
+	if (k == X)
 		data->anglec -= 0.1;
-	if (keysim == C)
+	if (k == C)
 		data->angles += 0.1;
-	if (keysim == V)
+	if (k == V)
 		data->angles -= 0.1;
-	if (keysim == B)
+	if (k == B)
 		data->angle += 0.1;
-	if (keysim == N)
+	if (k == N)
 		data->angle -= 0.1;
 	render (data);
 	return (0);
-	
 }
 
 
