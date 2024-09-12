@@ -62,7 +62,7 @@ typedef struct s_data
 	int		img_h;
 	int		img_w;
 	double	position_w;
-	double	positiundefined reference to `keyson_h;
+	double	position_h;
 	double	scale;
 	double	x_min;
 	double	y_min;
@@ -89,7 +89,6 @@ typedef struct s_conv
 }	t_conv;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		keys(int keycode, t_data *data);
 void	points_creator(char *map, t_data *data);
 char	*get_next_line(int fd);
 void	struct_init(t_data *data);
@@ -97,7 +96,7 @@ void	two_to_three(t_data *data);
 int		delete_everything(t_data *data);
 double	two_d_cos(int position, int scale, t_data *data, int n);
 double	two_d_sin(int position, int scale, t_data *data, int n);
-int		keys(int keysim, t_data *data);
+int		keypress(int k, t_data *data);
 void	point_assigner(int fd, t_data *data);
 
 #endif

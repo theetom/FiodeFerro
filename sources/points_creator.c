@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static void counter(int fd, t_data *data)
+static void	counter(int fd, t_data *data)
 {
 	int			x;
 	int			n;
@@ -36,7 +36,7 @@ static void counter(int fd, t_data *data)
 	free(data->array);
 }
 
-static void coord_creator(t_data *data, int n, int x, int y)
+static void	coord_creator(t_data *data, int n, int x, int y)
 {
 	data->tdp[n] = malloc(sizeof * data->tdp * 3);
 	if(!data->tdp[n])
@@ -46,7 +46,7 @@ static void coord_creator(t_data *data, int n, int x, int y)
 	data->tdp[n][0] = x;
 }
 
-void point_assigner(int fd, t_data *data)
+void	point_assigner(int fd, t_data *data)
 {
 	int		x;
 	int		n;
@@ -74,7 +74,7 @@ void point_assigner(int fd, t_data *data)
 	}
 }
 
-void points_creator(char *map, t_data *data)
+void	points_creator(char *map, t_data *data)
 {
 	int	fd;
 	int	n;

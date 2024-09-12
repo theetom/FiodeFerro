@@ -63,7 +63,7 @@ static void position(int k, t_data *data)
 		data->position_w += 50;
 }
 
-int	keys(int k, t_data *data)
+int	keypress(int k, t_data *data)
 {
 	
 	if (k == ESC)

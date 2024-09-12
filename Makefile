@@ -10,48 +10,57 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= fdf.a
+# Variables
+NAME    = fdf
+LIBFT   = ./Libft/
+MLX     = ./minilibx-linux/
+LIBFT_A = $(LIBFT)libft.a
+MLX_A   = $(MLX)libmlx_Linux.a
+SOURCES = sources/fdf.c \
+          sources/get_next_line.c \
+          sources/mlx_hooks.c \
+          sources/mlx_utils.c \
+          sources/points_creator.c \
+          sources/struct_init.c \
+          sources/two_to_three.c
 
-LIBFT	= Libft/
-MLX		= minilibx-linux/
-LIBFT_A	= $(addprefix $(LIBFT), libft.a)
-MLX_A	= $(addprefix $(MLX), libmlx_Linux.a)
-SOURCES	= sources/fdf.c \
-		sources/get_next_line.c \
-		sources/mlx_hooks.c \
-		sources/mlx_utils.c \
-		sources/points_creator.c \
-		sources/struct_init.c \
-		sources/two_to_three.c
-
-	
-	
+# Object files
 OBJECTS = $(SOURCES:.c=.o)
 
-CC		= cc
-CFLAGS 	= -Wall -Wextra -Werror -Lminilibx-linux -lmlx_Linux -LLibft -lft -lX11 -lXext -lm
+# Compiler and flags
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -I$(MLX) -I$(LIBFT) 
+LDFLAGS = -L$(MLX) -lmlx -L$(LIBFT) -lft -lX11 -lXext -lm
 
+# Default target
 all: $(NAME)
 
+# Build the executable
 $(NAME): $(OBJECTS)
-	@make -C Libft
-	@make -C minilibx-linux
-	$(AR) -r $@ $?
+	@$(MAKE) -C $(LIBFT)
+	@$(MAKE) -C $(MLX)
+	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
 
+# Rule for building object files
 %.o: %.c
-	$(CC) -o $(CFLAGS) $?
+	$(CC) $(CFLAGS) -o $@ -c $<
 
+# Clean object files
 clean:
 	rm -f $(OBJECTS)
 
+# Full clean
 fclean: clean
-	@make -C Libft fclean
-	@make -C minilibx-linux clean
+	@$(MAKE) -C $(LIBFT) fclean
+	@$(MAKE) -C $(MLX) clean
 	rm -f $(NAME)
 
+# Rebuild everything
 re: fclean all
 
+# Code formatting
 norminette:
-		norminette sources/
+	norminette sources/
 
+# Phony targets
 .PHONY: all clean fclean re norminette

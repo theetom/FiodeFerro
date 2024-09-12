@@ -14,7 +14,7 @@
 
 void ft_hooks(t_data *data)
 {	
-	mlx_key_hook(data->mlx_win, keys, data);
+	mlx_key_hook(data->mlx_win, keypress, data);
 	// mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keys, data);
 	mlx_hook(data->mlx_win, 17, 1L << 17, delete_everything, data);
 }
