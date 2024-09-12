@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-# Variables
 NAME    = fdf
-LIBFT   = ./Libft/
-MLX     = ./minilibx-linux/
+
+LIBFT   = Libft/
+MLX     = minilibx-linux/
 LIBFT_A = $(LIBFT)libft.a
 MLX_A   = $(MLX)libmlx_Linux.a
 SOURCES = sources/fdf.c \
@@ -43,7 +43,7 @@ $(NAME): $(OBJECTS)
 
 # Rule for building object files
 %.o: %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean object files
 clean:

@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int delete_everything(t_data *data)
+int	delete_everything(t_data *data)
 {
 	int	n;
 
@@ -26,9 +26,9 @@ int delete_everything(t_data *data)
 	free(data->tdp);
 	free(data->z);
 	exit(0);
-}	
+}
 
-static void render(t_data *data)
+static void	render(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->img_w, data->img_h);
@@ -36,9 +36,9 @@ static void render(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
 }
 
-static void z_decrement(int k, t_data *data)
+static void	z_decrement(int k, t_data *data)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	if (k == R && data->zx > 1)
@@ -51,7 +51,8 @@ static void z_decrement(int k, t_data *data)
 		n++;
 	}
 }
-static void position(int k, t_data *data)
+
+static void	position(int k, t_data *data)
 {
 	if (k == W)
 		data->position_h -= 50;
@@ -65,10 +66,9 @@ static void position(int k, t_data *data)
 
 int	keypress(int k, t_data *data)
 {
-	
 	if (k == ESC)
 		delete_everything(data);
-	if (k == W || k == A || k == S ||k == D)
+	if (k == W || k == A || k == S || k == D)
 		position(k, data);
 	if (k == PLUS)
 		data->scale *= 1.5;
@@ -79,5 +79,3 @@ int	keypress(int k, t_data *data)
 	render (data);
 	return (0);
 }
-
-

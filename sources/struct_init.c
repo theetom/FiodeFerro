@@ -12,19 +12,27 @@
 
 #include "fdf.h"
 
-static double scale(t_data *data)
+static double	scale(t_data *data)
 {
-	double width;
-	double height;
-	
+	double	width;
+	double	height;
+
 	width = data->x_max - data->x_min;
 	height = data->y_max - data->y_min;
-	if(height / data->img_h * 100 > width / data->img_h * 100)
-		return (75 / (((data->y_max - data->y_min)
-				* 100) / (data->img_h)));
+	if (height / data->img_h * 100 > width / data->img_h * 100)
+		return (70 / (((data->y_max - data->y_min)
+					* 100) / (data->img_h)));
 	else
-		return (75 / (((data->x_max - data->x_min)
-				* 100) / (data->img_w)));
+		return (70 / (((data->x_max - data->x_min)
+					* 100) / (data->img_w)));
+}
+
+static void	pos(t_data *data)
+{
+	data->position_w = (data->img_w - ((data->x_max - data->x_min)
+				* data->scale)) / 2 - (data->x_min * data->scale);
+	data->position_h = (data->img_h - ((data->y_max - data->y_min)
+				* data->scale)) / 2 - (data->y_min * data->scale);
 }
 
 void	struct_init(t_data *data)
@@ -51,6 +59,5 @@ void	struct_init(t_data *data)
 	data->scale = scale(data);
 	if (data->scale < 1)
 		data->scale = 1;
-	data->position_w = (data->img_w - ((data->x_max - data->x_min) * data->scale)) / 2 - (data->x_min * data->scale);
-	data->position_h = (data->img_h - ((data->y_max - data->y_min) * data->scale)) / 2 - (data->y_min * data->scale);
+	pos(data);
 }
