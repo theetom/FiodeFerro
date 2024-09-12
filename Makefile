@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/09/11 18:40:02 by toferrei         ###   ########.fr        #
+#    Updated: 2024/09/12 15:43:47 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SOURCES = sources/fdf.c \
           sources/mlx_utils.c \
           sources/points_creator.c \
           sources/struct_init.c \
-          sources/two_to_three.c
+          sources/two_to_three.c \
+		  sources/colors.c \
+		  sources/ft_atoi_base.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)

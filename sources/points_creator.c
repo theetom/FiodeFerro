@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/10 18:02:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:49:57 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,24 @@ static void	counter(int fd, t_data *data)
 
 static void	coord_creator(t_data *data, int n, int x, int y)
 {
-	data->tdp[n] = malloc(sizeof * data->tdp * 3);
+	int m;
+	char **temp;
+
+	temp = ft_split(data->array[x], ',');
+	m = -1;
+	data->tdp[n] = malloc(sizeof * data->tdp * 4);
 	if(!data->tdp[n])
 		return ;
+	if (temp[1])
+		data->tdp[n][3] = ft_atoi_base(temp[1], "0123456789ABCDEF");
+	else
+		data->tdp[n][3] = 0;
 	data->tdp[n][2] = ft_atoi(data->array[x]);
 	data->tdp[n][1] = y;
 	data->tdp[n][0] = x;
+	while(temp[++m])
+		free(temp[m]);
+	free(temp);
 }
 
 void	point_assigner(int fd, t_data *data)
@@ -90,9 +102,12 @@ void	points_creator(char *map, t_data *data)
 	data->z = malloc(sizeof *(data->tdp) * data->count);
 	fd = open(map, O_RDONLY);
 	point_assigner(fd, data);
+	data->z_max = data->tdp[n][2];
 	while (n < data->count)
 	{
 		data->z[n] = data->tdp[n][2];
+		if (data->z_max < data->tdp[n][2])
+			data->z_max = data->tdp[n][2];
 		n++;
 	}
 	close(fd);

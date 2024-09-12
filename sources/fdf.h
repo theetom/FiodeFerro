@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/11 18:42:27 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:45:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_data
 	double	y_min;
 	double	x_max;
 	double	y_max;
+	int		z_max;
 	int		count;
 	int		zx;
 	float	anglez;
@@ -85,7 +86,7 @@ typedef struct s_conv
 	double		b;
 	double		c;
 	double		x;
-	int			temp;
+	double		temp;
 }	t_conv;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -98,5 +99,7 @@ double	two_d_cos(int position, int scale, t_data *data, int n);
 double	two_d_sin(int position, int scale, t_data *data, int n);
 int		keypress(int k, t_data *data);
 void	point_assigner(int fd, t_data *data);
+int		colors(t_data *data, int n);
+int		ft_atoi_base(char *nbr, char *base);
 
 #endif

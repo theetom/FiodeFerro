@@ -6,19 +6,19 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:12:56 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/06 13:22:35 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:32:06 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void math_mather(t_conv *pt, t_data *data)
+static void math_mather(t_conv *pt, t_data *data, int n)
 {
 	pt->a = ((pt->yy1 - pt->yy) / (pt->xx1 - pt->xx));
 	pt->b = pt->yy - (pt->a * pt->xx);
 	pt->c = (pt->a * pt->x + pt->b);
 	if (pt->x > 0 && pt->x < data->img_w && pt->c < data->img_h && 0 < pt->c)
-		my_mlx_pixel_put(data, pt->x, pt->c, 0xFFFFFF);
+		my_mlx_pixel_put(data, pt->x, pt->c, colors(data, n));
 	pt->x += 0.01;
 }
 
@@ -32,7 +32,7 @@ static void swap_point(t_conv *pt)
 	pt->yy = pt->temp;
 }
 
-static void x_line(int n, t_conv *pt, t_data *data)
+static void line(int n, t_conv *pt, t_data *data)
 {
 	pt->xx1 = two_d_cos(data->position_w, data->scale, data, n);
 	pt->yy1 = two_d_sin(data->position_h, data->scale, data, n);
@@ -40,20 +40,8 @@ static void x_line(int n, t_conv *pt, t_data *data)
 		swap_point(pt);
 	pt->x = pt->xx;
 	while (pt->x < pt->xx1)
-		math_mather(pt, data);
+		math_mather(pt, data, n);
 }
-
-static void y_line(int n, t_conv *pt, t_data *data)
-{
-	pt->xx1 = two_d_cos(data->position_w, data->scale, data, n);;
-	pt->yy1 = two_d_sin(data->position_h, data->scale, data, n);
-	if (pt->xx1 < pt->xx)
-		swap_point(pt);
-	pt->x = pt->xx;
-	while (pt->x < pt->xx1)
-		math_mather(pt, data);
-}
-
 
 void two_to_three(t_data *data)
 {
@@ -66,13 +54,15 @@ void two_to_three(t_data *data)
 		pt.xx = two_d_cos(data->position_w, data->scale, data, n);
 		pt.yy = two_d_sin(data->position_h, data->scale, data, n);
 		if (pt.xx > 0 && pt.xx < data->img_w && pt.yy < data->img_h && 0 < pt.yy)
-			my_mlx_pixel_put(data, pt.xx, pt.yy, 0x00FFFFFF);
-		if (n < data->count - 1)
-			if (data->tdp[n + 1] && (n + 1) % data->line_l != 0)
-				x_line(n + 1, &pt, data);
-		if (n >= data->line_l)
-			if (data->tdp[n - data->line_l])
-				y_line(n - data->line_l, &pt, data);
+			my_mlx_pixel_put(data, pt.xx, pt.yy, colors(data, n));
+		if (n < data->count - 1 && data->tdp[n + 1] && (n + 1) % data->line_l != 0)
+				line(n + 1, &pt, data);
+		if (n >= data->line_l && data->tdp[n - data->line_l])
+		{
+			line(n - data->line_l, &pt, data);
+			printf("xx:%f	xx1:%f	yy:%f	yy1:%f\n", pt.xx, pt.xx1, pt.yy, pt.yy1);
+		}
 		n++;
 	}
+	printf("\n");
 }
