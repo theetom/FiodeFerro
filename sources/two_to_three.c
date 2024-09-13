@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:12:56 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/12 16:32:06 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:18:27 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,21 @@ static void swap_point(t_conv *pt)
 
 static void line(int n, t_conv *pt, t_data *data)
 {
+	int	trigger;
+
+	trigger = 0;
 	pt->xx1 = two_d_cos(data->position_w, data->scale, data, n);
 	pt->yy1 = two_d_sin(data->position_h, data->scale, data, n);
 	if (pt->xx1 < pt->xx)
+	{
 		swap_point(pt);
+		trigger++;
+	}
 	pt->x = pt->xx;
 	while (pt->x < pt->xx1)
 		math_mather(pt, data, n);
+	if (trigger)
+		swap_point(pt);
 }
 
 void two_to_three(t_data *data)
@@ -55,13 +63,10 @@ void two_to_three(t_data *data)
 		pt.yy = two_d_sin(data->position_h, data->scale, data, n);
 		if (pt.xx > 0 && pt.xx < data->img_w && pt.yy < data->img_h && 0 < pt.yy)
 			my_mlx_pixel_put(data, pt.xx, pt.yy, colors(data, n));
-		if (n < data->count - 1 && data->tdp[n + 1] && (n + 1) % data->line_l != 0)
-				line(n + 1, &pt, data);
-		if (n >= data->line_l && data->tdp[n - data->line_l])
-		{
-			line(n - data->line_l, &pt, data);
-			printf("xx:%f	xx1:%f	yy:%f	yy1:%f\n", pt.xx, pt.xx1, pt.yy, pt.yy1);
-		}
+		if (n < data->count - 1 && (n + 1) % data->line_l != 0)
+			line(n + 1, &pt, data);
+		if (n + data->line_l < data->count)
+			line(n + data->line_l, &pt, data);
 		n++;
 	}
 	printf("\n");

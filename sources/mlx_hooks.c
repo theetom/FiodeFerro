@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:59:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/11 17:16:31 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:50:54 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	keypress(int k, t_data *data)
 		data->scale /= 1.5;
 	if (k == R || k == F)
 		z_decrement(k, data);
+	if	(k == Z || k == X || k == C || k == V || k == B || k == N)
+		rotate(k, data);
 	render (data);
 	return (0);
 }

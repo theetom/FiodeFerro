@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:11 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/11 17:05:25 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:29:46 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void ft_hooks(t_data *data)
 {	
 	mlx_key_hook(data->mlx_win, keypress, data);
-	// mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, keys, data);
 	mlx_hook(data->mlx_win, 17, 1L << 17, delete_everything, data);
 }
 
@@ -23,6 +22,9 @@ int	main(int argc, char *argv[])
 {
 	t_data	data;
 
+	data.anglex = 120;
+	data.angley = 120;
+	data.anglez = 120;
 	data.img_h = 1080;
 	data.img_w = 1920;
 	data.tdp = NULL;
@@ -37,7 +39,7 @@ int	main(int argc, char *argv[])
 	data.img = mlx_new_image(data.mlx, data.img_w, data.img_h);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
-	two_to_three(&data);
+		two_to_three(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop(data.mlx);
 }

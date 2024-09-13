@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:56 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/12 13:23:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:36:43 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 double	two_d_cos(int position, int scale, t_data *data, int n)
 {
-	return (scale * ((data->tdp[n][0]) * cos(120) + (data->tdp[n][1])
-			* cos(120 + 2) + (data->tdp[n][2]) * cos(120 - 2)) + position);
+	return (scale * ((data->tdp[n][0]) * cos(data->anglex) + (data->tdp[n][1])
+			* cos(data->angley + 2) + (data->tdp[n][2]) * cos(data->anglez - 2)) + position);
 }
 
 double	two_d_sin(int position, int scale, t_data *data, int n)
 {
-	return (scale * ((data->tdp[n][0]) * sin(120) + (data->tdp[n][1])
-			* sin(120 + 2) + (data->tdp[n][2]) * sin(120 - 2)) + position);
+	return (scale * ((data->tdp[n][0]) * sin(data->anglex) + (data->tdp[n][1])
+			* sin(data->angley + 2) + (data->tdp[n][2]) * sin(data->anglez - 2)) + position);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/12 16:45:46 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:49:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int		keypress(int k, t_data *data);
 void	point_assigner(int fd, t_data *data);
 int		colors(t_data *data, int n);
 int		ft_atoi_base(char *nbr, char *base);
+void	rotate(int k, t_data *data);
 
 #endif

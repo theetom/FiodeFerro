@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/09/12 15:43:47 by toferrei         ###   ########.fr        #
+#    Updated: 2024/09/13 14:30:22 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SOURCES = sources/fdf.c \
           sources/struct_init.c \
           sources/two_to_three.c \
 		  sources/colors.c \
-		  sources/ft_atoi_base.c
+		  sources/ft_atoi_base.c \
+		  sources/rotate.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)
@@ -39,23 +40,26 @@ all: $(NAME)
 
 # Build the executable
 $(NAME): $(OBJECTS)
-	@$(MAKE) -C $(LIBFT)
-	@$(MAKE) -C $(MLX)
-	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
+	@$(MAKE) -s -C $(LIBFT)
+	@$(MAKE) -s -C $(MLX)
+	@$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LDFLAGS)
+	@echo "All files were created"
 
 # Rule for building object files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean object files
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
+	@echo "Fdf files were cleaned"
 
 # Full clean
 fclean: clean
-	@$(MAKE) -C $(LIBFT) fclean
-	@$(MAKE) -C $(MLX) clean
-	rm -f $(NAME)
+	@$(MAKE) -s -C $(LIBFT) fclean
+	@$(MAKE) -s -C $(MLX) clean
+	@rm -f $(NAME)
+	@echo "All files were cleaned"
 
 # Rebuild everything
 re: fclean all
