@@ -6,19 +6,19 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:12:56 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 13:18:27 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:50:01 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void math_mather(t_conv *pt, t_data *data, int n)
+static void math_mather(t_conv *pt, t_data *data, int n, int sit)
 {
 	pt->a = ((pt->yy1 - pt->yy) / (pt->xx1 - pt->xx));
 	pt->b = pt->yy - (pt->a * pt->xx);
 	pt->c = (pt->a * pt->x + pt->b);
 	if (pt->x > 0 && pt->x < data->img_w && pt->c < data->img_h && 0 < pt->c)
-		my_mlx_pixel_put(data, pt->x, pt->c, colors(data, n));
+		my_mlx_pixel_put(data, pt->x, pt->c, colors(data, n, sit));
 	pt->x += 0.01;
 }
 
@@ -32,7 +32,7 @@ static void swap_point(t_conv *pt)
 	pt->yy = pt->temp;
 }
 
-static void line(int n, t_conv *pt, t_data *data)
+static void line(int n, t_conv *pt, t_data *data, int sit)
 {
 	int	trigger;
 
@@ -46,7 +46,7 @@ static void line(int n, t_conv *pt, t_data *data)
 	}
 	pt->x = pt->xx;
 	while (pt->x < pt->xx1)
-		math_mather(pt, data, n);
+		math_mather(pt, data, n, sit);
 	if (trigger)
 		swap_point(pt);
 }
@@ -62,12 +62,11 @@ void two_to_three(t_data *data)
 		pt.xx = two_d_cos(data->position_w, data->scale, data, n);
 		pt.yy = two_d_sin(data->position_h, data->scale, data, n);
 		if (pt.xx > 0 && pt.xx < data->img_w && pt.yy < data->img_h && 0 < pt.yy)
-			my_mlx_pixel_put(data, pt.xx, pt.yy, colors(data, n));
+			my_mlx_pixel_put(data, pt.xx, pt.yy, colors(data, n, 0));
 		if (n < data->count - 1 && (n + 1) % data->line_l != 0)
-			line(n + 1, &pt, data);
+			line(n + 1, &pt, data, 1);
 		if (n + data->line_l < data->count)
-			line(n + data->line_l, &pt, data);
+			line(n + data->line_l, &pt, data, 2);
 		n++;
 	}
-	printf("\n");
 }

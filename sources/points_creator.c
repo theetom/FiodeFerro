@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/12 15:49:57 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:35:58 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	coord_creator(t_data *data, int n, int x, int y)
 	if (temp[1])
 		data->tdp[n][3] = ft_atoi_base(temp[1], "0123456789ABCDEF");
 	else
-		data->tdp[n][3] = 0;
+		data->tdp[n][3] = 0xFFFFFF;
 	data->tdp[n][2] = ft_atoi(data->array[x]);
 	data->tdp[n][1] = y;
 	data->tdp[n][0] = x;

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 13:49:36 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:33:17 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ double	two_d_cos(int position, int scale, t_data *data, int n);
 double	two_d_sin(int position, int scale, t_data *data, int n);
 int		keypress(int k, t_data *data);
 void	point_assigner(int fd, t_data *data);
-int		colors(t_data *data, int n);
+int		colors(t_data *data, int n, int sit);
 int		ft_atoi_base(char *nbr, char *base);
 void	rotate(int k, t_data *data);
 
