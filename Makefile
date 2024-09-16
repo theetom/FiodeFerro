@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/09/13 14:30:22 by toferrei         ###   ########.fr        #
+#    Updated: 2024/09/16 18:27:49 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ SOURCES = sources/fdf.c \
           sources/two_to_three.c \
 		  sources/colors.c \
 		  sources/ft_atoi_base.c \
-		  sources/rotate.c
+		  sources/rotate.c \
+		  sources/errors.c \
+		  sources/points_creator2.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)

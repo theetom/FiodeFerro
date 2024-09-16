@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 15:35:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:21:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,35 @@ static void	counter(int fd, t_data *data)
 	int			n;
 
 	x = -1;
-	while ((data->new_line = get_next_line(fd)))
+	data->new_line = get_next_line(fd);
+	while (data->new_line)
 	{
 		n = -1;
 		data->lines++;
 		if (data->line_l == 0)
 		{
 			data->array = ft_split(data->new_line, ' ');
-			while(data->array[++x])
+			while (data->array[++x])
 				data->line_l++;
 			x = -1;
-			while(data->array[++n])
+			while (data->array[++n])
 				free(data->array[n]);
 		}
 		free(data->new_line);
+		data->new_line = get_next_line(fd);
 	}
 	free(data->array);
 }
 
-static void	coord_creator(t_data *data, int n, int x, int y)
+void	freefree(t_data *data)
 {
-	int m;
-	char **temp;
+	int	m;
 
-	temp = ft_split(data->array[x], ',');
 	m = -1;
-	data->tdp[n] = malloc(sizeof * data->tdp * 4);
-	if(!data->tdp[n])
-		return ;
-	if (temp[1])
-		data->tdp[n][3] = ft_atoi_base(temp[1], "0123456789ABCDEF");
-	else
-		data->tdp[n][3] = 0xFFFFFF;
-	data->tdp[n][2] = ft_atoi(data->array[x]);
-	data->tdp[n][1] = y;
-	data->tdp[n][0] = x;
-	while(temp[++m])
-		free(temp[m]);
-	free(temp);
+	while (data->array[++m])
+		free(data->array[m]);
+	free(data->new_line);
+	free(data->array);
 }
 
 void	point_assigner(int fd, t_data *data)
@@ -68,10 +59,11 @@ void	point_assigner(int fd, t_data *data)
 	x = -1;
 	y = 0;
 	n = 0;
-	while ((data->new_line = get_next_line(fd)))
+	data->new_line = get_next_line(fd);
+	while (data->new_line)
 	{
 		data->array = ft_split(data->new_line, ' ');
-		while(data->array[++x])
+		while (data->array[++x])
 		{
 			coord_creator(data, n, x, y);
 			n++;
@@ -79,19 +71,33 @@ void	point_assigner(int fd, t_data *data)
 		y++;
 		x = -1;
 		m = -1;
-		while(data->array[++m])
-			free(data->array[m]);
-		free(data->new_line);
-		free(data->array);
+		freefree (data);
+		data->new_line = get_next_line(fd);
+	}
+}
+
+void	z_calc(t_data *data)
+{
+	int	n;
+
+	n = 0;
+	data->z_max = data->tdp[n][2];
+	data->z_min = data->tdp[n][2];
+	while (n < data->count)
+	{
+		data->z[n] = data->tdp[n][2];
+		if (data->z_max < data->tdp[n][2])
+			data->z_max = data->tdp[n][2];
+		if (data->z_min > data->tdp[n][2])
+			data->z_min = data->tdp[n][2];
+		n++;
 	}
 }
 
 void	points_creator(char *map, t_data *data)
 {
 	int	fd;
-	int	n;
 
-	n = 0;
 	data->line_l = 0;
 	data->lines = 0;
 	fd = open(map, O_RDONLY);
@@ -99,16 +105,18 @@ void	points_creator(char *map, t_data *data)
 	close(fd);
 	data->count = data->lines * data->line_l;
 	data->tdp = malloc(sizeof *(data->tdp) * data->count);
+	if (!data->tdp)
+	{
+		write(1, "malloc error", 13);
+		delete_everything(data);
+	}
 	data->z = malloc(sizeof *(data->tdp) * data->count);
+	if (!data->z)
+	{
+		write(1, "malloc error", 13);
+		delete_everything(data);
+	}
 	fd = open(map, O_RDONLY);
 	point_assigner(fd, data);
-	data->z_max = data->tdp[n][2];
-	while (n < data->count)
-	{
-		data->z[n] = data->tdp[n][2];
-		if (data->z_max < data->tdp[n][2])
-			data->z_max = data->tdp[n][2];
-		n++;
-	}
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:59:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 13:50:54 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:59:04 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,23 @@ int	delete_everything(t_data *data)
 	int	n;
 
 	n = 0;
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->mlx_win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
-	while (n < data->count)
-		free(data->tdp[n++]);
-	free(data->tdp);
-	free(data->z);
+	if (data->img)
+		mlx_destroy_image(data->mlx, data->img);
+	if (data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+	if (data->tdp)
+	{
+		while (n < data->count)
+			free(data->tdp[n++]);
+		free(data->tdp);
+	}
+	if (data->z)
+		free(data->z);
 	exit(0);
 }
 
@@ -76,7 +85,7 @@ int	keypress(int k, t_data *data)
 		data->scale /= 1.5;
 	if (k == R || k == F)
 		z_decrement(k, data);
-	if	(k == Z || k == X || k == C || k == V || k == B || k == N)
+	if (k == Z || k == X || k == C || k == V || k == B || k == N)
 		rotate(k, data);
 	render (data);
 	return (0);

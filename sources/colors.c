@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 13:19:22 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 15:53:28 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:42:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int colors(t_data *data, int n, int sit)
+int	colors(t_data *data, int n, int sit)
 {
 	if (sit == 0)
 		return (data->tdp[n][3]);

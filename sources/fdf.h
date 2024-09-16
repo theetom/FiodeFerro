@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/13 15:33:17 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:09:18 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 	double	x_max;
 	double	y_max;
 	int		z_max;
+	int		z_min;
 	int		count;
 	int		zx;
 	float	anglez;
@@ -99,8 +100,11 @@ double	two_d_cos(int position, int scale, t_data *data, int n);
 double	two_d_sin(int position, int scale, t_data *data, int n);
 int		keypress(int k, t_data *data);
 void	point_assigner(int fd, t_data *data);
+void	coord_creator(t_data *data, int n, int x, int y);
 int		colors(t_data *data, int n, int sit);
 int		ft_atoi_base(char *nbr, char *base);
 void	rotate(int k, t_data *data);
+void	first_verifs(int argc, char *argv);
+void	freefree(t_data *data);
 
 #endif
