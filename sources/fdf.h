@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/16 18:09:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:32:55 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_data
 	int		z_max;
 	int		z_min;
 	int		count;
-	int		zx;
+	float	zx;
 	float	anglez;
 	float	anglex;
 	float	angley;

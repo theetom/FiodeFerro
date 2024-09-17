@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/16 18:21:13 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:11:53 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	point_assigner(int fd, t_data *data)
 	}
 }
 
-void	z_calc(t_data *data)
+static void	z_calc(t_data *data)
 {
 	int	n;
 
@@ -116,5 +116,6 @@ void	points_creator(char *map, t_data *data)
 	}
 	fd = open(map, O_RDONLY);
 	point_assigner(fd, data);
+	z_calc(data);
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:43:09 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/16 17:24:18 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:23:29 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	first_verifs(int argc, char *argv)
 {
 	if (argc != 2)
 	{
-		write(1, "Wrong number of arguments", 26);
+		write(1, "Wrong number of arguments\n", 27);
 		exit (0);
 	}
 	if (name_verif(argv) == 0)
 	{
-		write(1, "Wrong file extension", 21);
+		write(1, "Wrong file extension\n", 22);
 		exit (0);
 	}
 }
@@ -57,7 +57,6 @@ void	z_verif(t_data *data)
 	int	n;
 
 	n = 0;
-
 	while (n < data->count)
 	{
 		if (data->tdp[n][2] < -100000 || data->tdp[n][2] > 100000)
@@ -69,4 +68,3 @@ void	z_verif(t_data *data)
 		n++;
 	}
 }
-
