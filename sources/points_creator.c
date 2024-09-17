@@ -54,7 +54,6 @@ void	point_assigner(int fd, t_data *data)
 	int		x;
 	int		n;
 	int		y;
-	int		m;
 
 	x = -1;
 	y = 0;
@@ -70,7 +69,6 @@ void	point_assigner(int fd, t_data *data)
 		}
 		y++;
 		x = -1;
-		m = -1;
 		freefree (data);
 		data->new_line = get_next_line(fd);
 	}
