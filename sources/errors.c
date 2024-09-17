@@ -51,3 +51,22 @@ void	first_verifs(int argc, char *argv)
 		exit (0);
 	}
 }
+
+void	z_verif(t_data *data)
+{
+	int	n;
+
+	n = 0;
+
+	while (n < data->count)
+	{
+		if (data->tdp[n][2] < -100000 || data->tdp[n][2] > 100000)
+		{
+			write(1, "Z value in file is too big\n", 28);
+			write(1, "(keep them between -100000 and 100000)\n", 40);
+			delete_everything(data);
+		}
+		n++;
+	}
+}
+

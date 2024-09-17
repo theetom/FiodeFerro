@@ -27,9 +27,9 @@ int	main(int argc, char *argv[])
 	data.anglez = 120;
 	data.img_h = 1080;
 	data.img_w = 1920;
+	data.zx = 1;
 	data.tdp = NULL;
 	first_verifs(argc, argv[1]);
-	data.zx = 1;
 	points_creator(argv[1], &data);
 	data.mlx = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx, data.img_w, data.img_h, "My Fdf!");
@@ -38,6 +38,7 @@ int	main(int argc, char *argv[])
 	data.img = mlx_new_image(data.mlx, data.img_w, data.img_h);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel,
 			&data.line_length, &data.endian);
+	z_verif(&data);
 	two_to_three(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	mlx_loop(data.mlx);

@@ -17,22 +17,22 @@ int	delete_everything(t_data *data)
 	int	n;
 
 	n = 0;
-	if (data->img)
+	// if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
-	if (data->mlx_win)
+	// if (data->mlx_win)
 		mlx_destroy_window(data->mlx, data->mlx_win);
-	if (data->mlx)
-	{
+	// if (data->mlx)
+	// {
 		mlx_destroy_display(data->mlx);
 		free(data->mlx);
-	}
-	if (data->tdp)
-	{
+	// }
+	// if (data->tdp)
+	// {
 		while (n < data->count)
 			free(data->tdp[n++]);
 		free(data->tdp);
-	}
-	if (data->z)
+	// }
+	// if (data->z)
 		free(data->z);
 	exit(0);
 }

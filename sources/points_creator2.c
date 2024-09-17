@@ -12,14 +12,6 @@
 
 #include "fdf.h"
 
-static void	z_verif(t_data *data)
-{
-	write(1, "Z value in file is too big", 27);
-	write(1, "(keep them between -100000 and 100000)", 39);
-	freefree(data);
-	delete_everything(data);
-}
-
 void	coord_creator(t_data *data, int n, int x, int y)
 {
 	int		m;
@@ -43,6 +35,4 @@ void	coord_creator(t_data *data, int n, int x, int y)
 	while (temp[++m])
 		free(temp[m]);
 	free(temp);
-	if (data->tdp[n][2] < -100000 || data->tdp[n][2] > 100000)
-		z_verif(data);
 }

@@ -105,13 +105,13 @@ void	points_creator(char *map, t_data *data)
 	data->tdp = malloc(sizeof *(data->tdp) * data->count);
 	if (!data->tdp)
 	{
-		write(1, "malloc error", 13);
+		write(1, "malloc error\n", 14);
 		delete_everything(data);
 	}
 	data->z = malloc(sizeof *(data->tdp) * data->count);
 	if (!data->z)
 	{
-		write(1, "malloc error", 13);
+		write(1, "malloc error\n", 14);
 		delete_everything(data);
 	}
 	fd = open(map, O_RDONLY);

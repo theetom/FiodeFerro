@@ -106,5 +106,6 @@ int		ft_atoi_base(char *nbr, char *base);
 void	rotate(int k, t_data *data);
 void	first_verifs(int argc, char *argv);
 void	freefree(t_data *data);
+void	z_verif(t_data *data);
 
 #endif
