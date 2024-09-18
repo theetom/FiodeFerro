@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:43:09 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/18 16:13:59 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:30:49 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	first_verifs(int argc, char *argv)
 		write(1, "Wrong file extension\n", 22);
 		exit (0);
 	}
-	
 }
 
 void	z_verif(t_data *data)
