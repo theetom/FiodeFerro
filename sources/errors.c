@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:43:09 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/17 16:23:29 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/18 16:13:59 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ static int	name_verif(char *f)
 
 void	first_verifs(int argc, char *argv)
 {
+	int	test;
+
+	test = open(argv, O_RDONLY);
+	if (test < 0)
+	{
+		close(test);
+		write(1, "Invalid file\n", 14);
+		exit (0);
+	}
+	else
+		close (test);
 	if (argc != 2)
 	{
 		write(1, "Wrong number of arguments\n", 27);
@@ -50,6 +61,7 @@ void	first_verifs(int argc, char *argv)
 		write(1, "Wrong file extension\n", 22);
 		exit (0);
 	}
+	
 }
 
 void	z_verif(t_data *data)

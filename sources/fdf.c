@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:11 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/17 16:20:41 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:49:28 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	data.anglez = 120;
 	data.img_h = 1080;
 	data.img_w = 1920;
-	data.zx = 0.9;
+	data.zx = 1;
 	data.tdp = NULL;
 	first_verifs(argc, argv[1]);
 	points_creator(argv[1], &data);
