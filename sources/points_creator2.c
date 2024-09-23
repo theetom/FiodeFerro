@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:06:18 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/23 13:45:03 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/23 14:24:36 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	coord_creator(t_data *data, int n, int x, int y)
 	while (temp[++m])
 		free(temp[m]);
 	free(temp);
-	printf("%x\n", data->tdp[n][3]);
 }
