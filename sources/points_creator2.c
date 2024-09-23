@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:06:18 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/16 18:27:19 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/23 13:45:03 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	coord_creator(t_data *data, int n, int x, int y)
 		delete_everything(data);
 	}
 	if (temp[1])
-		data->tdp[n][3] = ft_atoi_base(temp[1], "0123456789ABCDEF");
+		data->tdp[n][3] = ft_atoi_base(temp[1], "0123456789ABCDEFabcdef");
 	else
 		data->tdp[n][3] = 0xFFFFFF;
 	data->tdp[n][2] = ft_atoi(data->array[x]);
@@ -35,4 +35,5 @@ void	coord_creator(t_data *data, int n, int x, int y)
 	while (temp[++m])
 		free(temp[m]);
 	free(temp);
+	printf("%x\n", data->tdp[n][3]);
 }
