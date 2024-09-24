@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:59:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/18 16:08:44 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:56:13 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	keypress(int k, t_data *data)
 	if (k == Z || k == X || k == C || k == V || k == B || k == N)
 		rotate(k, data);
 	render (data);
+	mlx_string_put(data->mlx, data->mlx_win, 15, 15, 0x00FFFFFF, "OLA");
 	return (0);
 }
