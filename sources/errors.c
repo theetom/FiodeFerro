@@ -6,11 +6,20 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 16:43:09 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/24 11:15:16 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:30:21 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	empty_file_checker(t_data *data)
+{
+	if (!data->new_line)
+	{
+		write(1, "file is empty\n", 15);
+		exit(1);
+	}
+}
 
 static int	name_verif(char *f)
 {
@@ -47,6 +56,11 @@ void	first_verifs(int argc, char *argv)
 		write(1, "Wrong number of arguments\n", 27);
 		exit (0);
 	}
+	if (name_verif(argv) == 0)
+	{
+		write(1, "Wrong file extension\n", 22);
+		exit (0);
+	}
 	test = open(argv, O_RDONLY);
 	if (test < 0)
 	{
@@ -56,11 +70,6 @@ void	first_verifs(int argc, char *argv)
 	}
 	else
 		close (test);
-	if (name_verif(argv) == 0)
-	{
-		write(1, "Wrong file extension\n", 22);
-		exit (0);
-	}
 }
 
 void	z_verif(t_data *data)

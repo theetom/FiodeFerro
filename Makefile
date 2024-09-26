@@ -6,7 +6,7 @@
 #    By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/12 12:34:36 by toferrei          #+#    #+#              #
-#    Updated: 2024/09/16 18:27:49 by toferrei         ###   ########.fr        #
+#    Updated: 2024/09/26 15:46:14 by toferrei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ re: fclean all
 
 # Code formatting
 norminette:
-	norminette sources/
+	norminette | grep "^[^Error;]" | grep "^[^mini;]" | grep "^[^Notice;]" | grep Error
 
 # Phony targets
 .PHONY: all clean fclean re norminette

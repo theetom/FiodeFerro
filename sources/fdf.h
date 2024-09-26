@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 13:57:04 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/23 13:38:30 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:30:43 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void	rotate(int k, t_data *data);
 void	first_verifs(int argc, char *argv);
 void	freefree(t_data *data);
 void	z_verif(t_data *data);
+void	empty_file_checker(t_data *data);
 
 #endif

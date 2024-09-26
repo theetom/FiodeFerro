@@ -6,7 +6,7 @@
 /*   By: toferrei <toferrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:39:05 by toferrei          #+#    #+#             */
-/*   Updated: 2024/09/18 16:10:58 by toferrei         ###   ########.fr       */
+/*   Updated: 2024/09/26 15:29:22 by toferrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	counter(int fd, t_data *data)
 
 	x = -1;
 	data->new_line = get_next_line(fd);
+	empty_file_checker(data);
 	while (data->new_line)
 	{
 		n = -1;

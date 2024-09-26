@@ -1,7 +1,11 @@
 {
     "files.associations": {
-        "fdf.h": "c",
-        "stdio.h": "c",
-        "stdlib.h": "c"
-    }
+		"fdf.h": "c",
+		"stdio.h": "c",
+		"stdlib.h": "c",
+		"libft.h": "c",
+		"x.h": "c",
+		"keysym.h": "c",
+		"keysymdef.h": "c"
+	}
 }
